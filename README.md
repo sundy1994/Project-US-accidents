@@ -1,5 +1,5 @@
 # Project: Analysis and Modeling of Traffic Accidents in US
-**Key Words:**  Python, Data cleaning, Data wrangling, EDA, Data visualization, Machine Learning, Modeling
+**Key Words:**  Python, Data cleaning, Data wrangling, EDA, Data visualization, Machine Learning, Classification
 
 
 ## Overview:
