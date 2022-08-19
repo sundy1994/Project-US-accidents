@@ -20,4 +20,10 @@ The original dataset contains 1516064 entries with 46 attributes, including 13 b
 
 ### Distribution of Severity
 The severity of accidents is a number between 1 and 4, where 1 indicates the least impact on traffic and 4 indicates the most severe cases. Most of the accidents have severity 2 while severity 3 takes second place. This makes sense since, but the imbalance in the distribution of severity may influence the accuracy of prediction. Need to consider unsampling some severity 2 cases to improve the performance of our model.
+
 ![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/1.%20severity.png)
+
+### Location Analysis
+A natural question to ask is which states are dangerous/safe in terms of traffic accidents? Based on this dataset, California has most accidents (about 30% of all cases) in US. Florida takes the second place but CA is much ahead of it. They also have many accidents with severity 4.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/2.%20most%20states.png)
