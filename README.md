@@ -71,3 +71,43 @@ There's 'Description' column in the dataset, which contains the information of e
 Finally, here are the most common words in the description. 79.75% of rows contains 'Accidents' or 'Incident', 41.02% of rows contains 'Road' or 'Rd' or 'Ave' or 'st', 29.42% of rows contains 'exit' and 9.94% of rows contains 'closed'.
 
 ![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/12.%20text2.png)
+
+
+## Part 2: Training and Prediction with Machine Learning Models
+
+### Overview
+The goal of the modeling part is predicting the severity of a traffic accident be based on the key features. Since severity has 4 levels, I mainly used classifiers to make predictions.
+
+To make the dataset suitable for training with machine learning models, I first converted 12 categorical variables into labels using LabelEncoder from sklearn, and then manually dropped all the unnecessary features based on our domian knowledges (such as Zipcode and description). After that, I divided the dataset into features (41 columns in total) and label (severity) and split it into training set and testing set. As part of feature engineering, I use data mining techinques to extract features from raw, clean datasets based on our domain knowledges & common sense in order to improve the performance of machine learning model.
+
+### Unsupervised models: PCA and K-means clustering
+To begin with, unsupervised models including PCA and k-means clustering can help selecting features, reducing noise and solve multicolinearity problems. After standerdize the dataset with StandardScaler from sklearn, the training set is fited with PCA. Based on the explained variance, I selected 31 PCs to build new train_pca and test_pca.
+
+K-means clustering seeks to find “natural groupings” in data based on distance. By plotting distortion vs. number of clusters, I use the "elbow method" to determine k = 4 as the number of clusters.
+
+### Supervised models
+
+**Naive Bayes Classifier**
+
+I used GaussianNB from sklearn. Using training set without PCA, I get a testing accruacy of 79.0391%, while the train_pca gives a testing accuracy of 79.7007%. There isn't any big improvement, but there's only 31 columns in train_pca, which saves space comparing to 41 columns in the original training set.
+
+**Decision Tree**
+
+Decision Tree is imported from sklearn.tree.DecisionTreeClassifier(). Without pca, I received a testing accuracy of 84.7618% and 84.4178% with PCA. 
+
+**Random Forest**
+
+Random forest model is basicalky ensembles of decision tree. I imported RandomForestClassifier from sklearn.ensemble. With n_estimaors = 100, the testin accuracy accuracy is 86.8688%.
+
+**Logistic Regression**
+
+LogisticRegression was imported from sklearn.linear_model. This model generates an testing accuracy of 86.2758%. Both PCA and regularization can't improve the testing accuracy.
+
+**Stacking**
+
+Since logistic regression and random forest give better results, I want to whether the testing accuracy will be even higher if we stack them together. I imported stacking classifier from sklearn.ensemble. As what I expected, the combined model gives a testing accuracy of 89.1705%. This will be our final model.
+
+
+## Summary
+In this project, I explored the distribution of car accidents with respect to location and time. Then, I implemented some machine learning classifiers to predict the severity of car accidents. By stacking Random Forest and Logistic Regression, I obtained a testing accuracy of 89.1705%.
+As a next step, I may analyze the wheather conditions and traffic environment, which wasn't focused in this project. It's easy to predict that traffic accidents tend to happen more frequently in rainy and snowy days, where the signs are less conspicuous. However, this need to be validated with more data in future analysis.
