@@ -4,12 +4,12 @@
 
 ## Overview:
 
-There are more than 30K motor vehicle crashes yearly in the US, which involves more than 3K deaths. In this project, I am interested in getting in-depth insights into traffic accidents in the US. We want to visualize the traffic accident data in various ways to present the US traffic accidents cases in a story-telling way to help audiences to learn about the situations of US traffic accidents. It is also interesting to understand the significant factors causing traffic accidents, which might increase our traffic safety awareness in the future.
+There are more than 30K motor vehicle crashes yearly in the US, which involves more than 3K deaths. In this project, I am interested in getting in-depth insights into traffic accidents in the US. I want to visualize the traffic accident data in various ways to present the US traffic accidents cases in a story-telling way to help audiences to learn about the situations of US traffic accidents. It is also interesting to understand the significant factors causing traffic accidents, which might increase our traffic safety awareness in the future.
 
-The main purpose of this project it to study the key features influencing the occurrence of car accidents, the factors affecting accidents severity, as well as time and location that have the highest number of accidents. In order to do this, I used Python(Pandas) in Google Colab to clean the original dataset, complete EDA and implement data visualization and exhibit some interesting features on map. After that, I trained some machine learning models including Linear Regression, KNN, Decision Tree, Random Forest, SVM and Neural Network to Predicting the severity and duration of accidents. Most of them have testing errors above 86%, which is pretty good.
+The main purpose of this project it to study the key features influencing the occurrence of car accidents, the factors affecting accidents severity, as well as time and location that have the highest number of accidents. In order to do this, I used Python(Pandas) in Google Colab to clean the original dataset, complete EDA and implement data visualization and exhibit some interesting features on map. After that, I trained some machine learning models including PCA, K-means clustering, Naive Bayes, Decision Tree, Random Forest, Linear Regression, and Stacking to predict the severity of car accidents. Most of them have testing accuracy above 86%, and Stacking of Random Forest and Linear Regression has 89% testing accuracy, which is the final model.
 
 
-## Data Source: [A Countrywide Traffic Accident Dataset (2016 - 2021)](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents) from Kaggle
+## Data Source: [A Countrywide Traffic Accident Dataset (2016 - 2020)](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents) from Kaggle
 
 This dataset contains 1.5 million accident records, which is collected from February 2016 to Dec 2020 in 49 states of the USA. The author uses multiple APIs provided by the US and state departments of transportation, law enforcement agencies, traffic cameras, and traffic sensors within the road-networks.
 
@@ -19,7 +19,7 @@ This dataset contains 1.5 million accident records, which is collected from Febr
 The original dataset contains 1516064 entries with 46 attributes, including 13 bool values, 13 float values, 1 int value and 20 objects. They can be roughly devided into **Time** attributes, **Location** attributes and **Traffic Environment** attributes. After removing Null values and useless data, it ended up with 1370980 rows.
 
 ### Distribution of Severity
-The severity of accidents is a number between 1 and 4, where 1 indicates the least impact on traffic and 4 indicates the most severe cases. Most of the accidents have severity 2 while severity 3 takes second place. This makes sense since, but the imbalance in the distribution of severity may influence the accuracy of prediction. Need to consider unsampling some severity 2 cases to improve the performance of our model.
+The severity of accidents is a number between 1 and 4, where 1 indicates the least impact on traffic and 4 indicates the most severe cases. Most of the accidents have severity 2, while severity 3 takes the second place.
 
 ![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/1.%20severity.png)
 
@@ -81,31 +81,31 @@ The goal of the modeling part is predicting the severity of a traffic accident b
 To make the dataset suitable for training with machine learning models, I first converted 12 categorical variables into labels using LabelEncoder from sklearn, and then manually dropped all the unnecessary features based on our domian knowledges (such as Zipcode and description). After that, I divided the dataset into features (41 columns in total) and label (severity) and split it into training set and testing set. As part of feature engineering, I use data mining techinques to extract features from raw, clean datasets based on our domain knowledges & common sense in order to improve the performance of machine learning model.
 
 ### Unsupervised models: PCA and K-means clustering
-To begin with, unsupervised models including PCA and k-means clustering can help selecting features, reducing noise and solve multicolinearity problems. After standerdize the dataset with StandardScaler from sklearn, the training set is fited with PCA. Based on the explained variance, I selected 31 PCs to build new train_pca and test_pca.
+To begin with, unsupervised models including PCA and k-means clustering can help selecting features, reducing noise and solve multicolinearity problems. After standerdize the dataset with StandardScaler from sklearn, the training set is fitted with PCA. Based on the explained variance, I select 31 PCs to build new train_pca and test_pca.
 
-K-means clustering seeks to find “natural groupings” in data based on distance. By plotting distortion vs. number of clusters, I use the "elbow method" to determine k = 4 as the number of clusters.
+K-means clustering seeks to find “natural groupings” in data based on distance. By plotting distortion vs. number of clusters, I use the "elbow method" to determine k = 4 as the number of clusters. This aligns with the fact that there are 4 levels of severity.
 
 ### Supervised models
 
 **Naive Bayes Classifier**
 
-I used GaussianNB from sklearn. Using training set without PCA, I get a testing accruacy of 79.0391%, while the train_pca gives a testing accuracy of 79.7007%. There isn't any big improvement, but there's only 31 columns in train_pca, which saves space comparing to 41 columns in the original training set.
+I use GaussianNB from sklearn. Using training set without PCA, I get a testing accruacy of 79.0391%, while the train_pca gives a testing accuracy of 79.7007%. There isn't a big improvement, but there's only 31 columns in train_pca, which saves some space comparing to 41 columns in the original training set. So it's still worth it.
 
 **Decision Tree**
 
-Decision Tree is imported from sklearn.tree.DecisionTreeClassifier(). Without pca, I received a testing accuracy of 84.7618% and 84.4178% with PCA. 
+Decision Tree is imported from sklearn.tree.DecisionTreeClassifier(). I receive a testing accuracy of 84.7618% without and 84.4178% with PCA. 
 
 **Random Forest**
 
-Random forest model is basicalky ensembles of decision tree. I imported RandomForestClassifier from sklearn.ensemble. With n_estimaors = 100, the testin accuracy accuracy is 86.8688%.
+Random forest model is basically an ensemble of many decision trees. I import RandomForestClassifier from sklearn.ensemble. With n_estimaors = 100, the testin accuracy accuracy is 86.8688%.
 
 **Logistic Regression**
 
-LogisticRegression was imported from sklearn.linear_model. This model generates an testing accuracy of 86.2758%. Both PCA and regularization can't improve the testing accuracy.
+LogisticRegression is imported from sklearn.linear_model. This model generates a testing accuracy of 86.2758%. Both PCA and regularization can't improve the testing accuracy.
 
 **Stacking**
 
-Since logistic regression and random forest give better results, I want to whether the testing accuracy will be even higher if we stack them together. I imported stacking classifier from sklearn.ensemble. As what I expected, the combined model gives a testing accuracy of 89.1705%. This will be our final model.
+Since logistic regression and random forest give better results, I want to know whether testing accuracy will be even higher if I stack them together. I imported stacking classifier from sklearn.ensemble. As I am expected, the combined model gives a testing accuracy of 89.1705%. This will be the final model.
 
 
 ## Summary
