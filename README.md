@@ -27,3 +27,47 @@ The severity of accidents is a number between 1 and 4, where 1 indicates the lea
 A natural question to ask is which states are dangerous/safe in terms of traffic accidents? Based on this dataset, California has most accidents (about 30% of all cases) in US. Florida takes the second place but CA is much ahead of it. They also have many accidents with severity 4.
 
 ![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/2.%20most%20states.png)
+
+On the other hand, SD, WY, VT and ND only have less than 500 accidents over the past 5 years. That's really few. However, WY has the highest percentage of severity 4, so it should not be considered very safe.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/3.%20least%20states.png)
+
+As for cities, the numbers in LA, Miami and Orlando explaines the cases in CA and FL. After all, who can say no to Disneyland and Universal Studio?
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/4.%20most%20cities.png)
+
+I further use Plotly to visualize cases of cities on an interactive US map (best open with Google Colab). Although several big cities on west coast have many cases, such as LA, Sacramento and Portland, obviously the situation on east coast is worse.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/5.%20US%20map.png)
+
+Finally, let's focus on the accidents in Philadelphia specifically where our university is located, and do visualization on 2 interactive maps (again, best open with Google Colab) to see which part of Philadelphia is more likely to have accidents. 
+
+The first map shows a bunch of circles, in which orange means a large number of accidents, while green means small. If you keep clicking on the circles, you will finally got some warning signs, and these signs are the exact locations of accidents. The color of the warning signs means the severity, where the red means the most severe accidents, and green means least.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/6.%20Philly%20map.png)
+
+The second map is a density map, where the color means average severity of accidents. Yellow means the most severe and purple means the least severe. Collectively, the accidents mainly located in center city and east philly. There are lots of severe cases on I-676, I-76 and I-95. This analysis can help informing drivers about the dangerous road part.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/7.%20Philly%20map%202.png)
+
+### Time Analysis
+When are the accidents most likely to happen? Or, happens most frequently? According to the data, the number of accidents is less in summer (July and August), and higher in winter (November and December). This might be caused by the worse weather conditions in winter.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/8.%20month.png)
+
+In terms of weekdays, we can see that the number of accidents in the workdays are twice of which in the weekends. This is because people needs to drive to work during rush hours so there are many cars appearing at the same time, and thus increase the chance of car accidents.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/9.%20weekday.png)
+
+The plot below confirms my hypothesis. There are three common peaks of acccidents in a day: 7-8 AM, 16-17 PM, 0 AM. 7-8 AM and 16-17 PM are rush hours, while 0 AM is a time when people are very tired driving (and a time when people usually leave resturants or head to bars and clubs), which will leads to accidents.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/10.%20hour.png)
+
+### Text Analysis
+There's 'Description' column in the dataset, which contains the information of each accident. I first create a word cloud, which indicates some common causes of accidents such as 'lane blocked', 'slow traffic' and 'exit closed'.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/11.%20text.png)
+
+Finally, here are the most common words in the description. 79.75% of rows contains 'Accidents' or 'Incident', 41.02% of rows contains 'Road' or 'Rd' or 'Ave' or 'st', 29.42% of rows contains 'exit' and 9.94% of rows contains 'closed'.
+
+![](https://github.com/sundy1994/Project-US-accidents/blob/main/images/12.%20text2.png)
