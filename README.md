@@ -2,11 +2,11 @@
 **Key Words:**  Python, Data cleaning, Data wrangling, EDA, Data visualization, Machine Learning, Classification
 
 
-## Overview:
+## Overview
 
 There are more than 30K motor vehicle crashes yearly in the US, which involves more than 3K deaths. In this project, I am interested in getting in-depth insights into traffic accidents in the US. I want to visualize the traffic accident data in various ways to present the US traffic accidents cases in a story-telling way to help audiences to learn about the situations of US traffic accidents. It is also interesting to understand the significant factors causing traffic accidents, which might increase our traffic safety awareness in the future.
 
-The main purpose of this project it to study the key features influencing the occurrence of car accidents, the factors affecting accidents severity, as well as time and location that have the highest number of accidents. In order to do this, I used Python(Pandas) in Google Colab to clean the original dataset, complete EDA and implement data visualization and exhibit some interesting features on map. After that, I trained some machine learning models including PCA, K-means clustering, Naive Bayes, Decision Tree, Random Forest, Linear Regression, and Stacking to predict the severity of car accidents. Most of them have testing accuracy above 86%, and Stacking of Random Forest and Linear Regression has 89% testing accuracy, which is the final model.
+The main purpose of this project is to study the key features influencing the occurrence of car accidents, the factors affecting accidents severity, as well as time and location that have the highest number of accidents. In order to do this, I used Python(Pandas) in Google Colab to clean the original dataset, complete EDA and implement data visualization and exhibit some interesting features on map. After that, I trained some machine learning models including PCA, K-means clustering, Naive Bayes, Decision Tree, Random Forest, Linear Regression, and Stacking to predict the severity of car accidents. Most of them have testing accuracy above 86%, and Stacking of Random Forest and Linear Regression has 89% testing accuracy, which is the final model.
 
 
 ## Data Source: [A Countrywide Traffic Accident Dataset (2016 - 2020)](https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents) from Kaggle
